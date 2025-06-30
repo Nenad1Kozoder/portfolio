@@ -1,0 +1,29 @@
+.home {
+  overflow: hidden;
+  margin-top: 240px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 8vw;
+  line-height: 8vw;
+  text-align: center;
+}
+
+.description {
+  margin: 40px auto 64px;
+  max-width: 840px;
+  text-align: center;
+  font-size: 18px;
+
+  p {
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.subtitle {
+  text-align: center;
+  font-size: 2vw;
+  display: block;
+  color: var(--red-color);
+  position: relative;
+  padding-bottom: 24px;
+
+  &.active {
+    &:after {
+      content: "";
+      height: 2px;
+      width: 0;
+      left: 50%;
+      bottom: 0;
+      background: white;
+      position: absolute;
+      display: block;
+      animation: expandLine 1s forwards;
+    }
+
+    @keyframes expandLine {
+      0% {
+        width: 0;
+        left: 50%;
+      }
+      100% {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}

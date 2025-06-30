@@ -1,0 +1,35 @@
+.arowDown {
+  display: inline-flex;
+  margin: 0 auto;
+  justify-content: center;
+
+  a {
+    svg {
+      width: 64px;
+      height: 64px;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+
+    &.active,
+    &:hover {
+      svg {
+        animation: moveUpDown 2s infinite ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0); /* Početna pozicija */
+  }
+  50% {
+    transform: translateY(-30px); /* Pomeri 50px ka gore */
+  }
+  100% {
+    transform: translateY(0); /* Vratite na početnu poziciju */
+  }
+}
