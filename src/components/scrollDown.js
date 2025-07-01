@@ -2,11 +2,10 @@
 
 import { FaAnglesDown } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import Link from "next/link";
-import styles from "./arrowDown.module.scss";
+import styles from "./scrollDown.module.scss";
 import { useEffect, useRef, useState } from "react";
 
-const ArrowDown = () => {
+const ScrollDown = () => {
   const [isBouncing, setIsBouncing] = useState(true);
   const elementRef = useRef(null);
 
@@ -17,6 +16,18 @@ const ArrowDown = () => {
   const animationDone = useSelector(
     (state) => state.homeAnimationDone.homeAnimationDone
   );
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const section = document.getElementById("expertise");
+    if (section) {
+      const yOffset = -100; // negativno jer želimo da pomerimo nagore
+      const y =
+        section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,19 +52,20 @@ const ArrowDown = () => {
 
   return (
     <div className={styles.arowDown} ref={elementRef}>
-      <Link
+      <a
         href="#expertise"
         className={isBouncing ? styles.active : ""}
         onMouseEnter={handleMouseEnter}
+        onClick={handleClick}
       >
         {animationDone && (
           <span>
             <FaAnglesDown />
           </span>
         )}
-      </Link>
+      </a>
     </div>
   );
 };
 
-export default ArrowDown;
+export default ScrollDown;

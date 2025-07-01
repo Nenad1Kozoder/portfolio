@@ -1,7 +1,7 @@
 import TypeText from "@/components/typeText";
 
 import styles from "./home.module.scss";
-import ArrowDown from "./arrowDown";
+import ScrollDown from "./scrollDown";
 
 const Home = ({ name, lastname }) => {
   return (
@@ -22,7 +22,7 @@ const Home = ({ name, lastname }) => {
           accessibility, and increased user engagement.
         </p>
       </div>
-      <ArrowDown />
+      <ScrollDown />
     </section>
   );
 };
