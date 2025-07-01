@@ -1,9 +1,27 @@
-import Navigation from "./navigation";
-import stiles from "./header.module.scss";
+"use client";
+
+import { useEffect, useState } from "react";
+import Navigation from "./navigation.js";
+import stiles from "./header.module.scss"; // pretpostavka da koristiš SCSS modul
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 200);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // da odmah proveri pri mountu
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={stiles.header}>
+    <header className={`${stiles.header} ${isScrolled ? stiles.sticky : ""}`}>
       <svg
         width="458.90000000000003"
         height="33.502426103562655"
