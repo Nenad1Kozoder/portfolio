@@ -1,6 +1,6 @@
 .home {
   overflow: hidden;
-  margin-top: 240px;
+  padding-top: 256px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -8,14 +8,14 @@
 
 .title {
   text-transform: uppercase;
-  font-size: 8vw;
-  line-height: 8vw;
+  font-size: 6vw;
+  line-height: 7vw;
   text-align: center;
 }
 
 .description {
-  margin: 40px auto 64px;
-  max-width: 840px;
+  margin: 40px auto 124px;
+  max-width: 960px;
   text-align: center;
   font-size: 18px;
 
