@@ -1,5 +1,6 @@
 .projectsSection {
   min-height: 100svh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,19 +18,29 @@
 
 .projectsHolder {
   margin-top: 64px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
   gap: 40px;
+  position: relative;
+  width: 100%;
 }
 
 .projectNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  z-index: 100;
 }
 
 .projectContent {
+  display: flex;
+  flex-direction: column;
+
   .projectTabs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
+    width: 60%;
+    align-self: flex-end;
 
     .tabButton {
       width: 100%;
@@ -48,5 +59,10 @@
         background: rgba(255, 255, 255, 0.5);
       }
     }
+  }
+  .projectData {
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }

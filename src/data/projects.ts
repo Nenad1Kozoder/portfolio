@@ -1,8 +1,8 @@
 export const data = [
   {
-    company: "Computer Rock doo, Belgrade, Serbia",
+    company: "Computer Rock doo",
     url: "https://computerrock.com/",
-    jobTitle: "Frontend Developer / JavaScript Developer",
+    jobTitle: "Frontend / JavaScript Developer",
     tenure: "Oct 2020 – Feb 2025",
     description:
       "During my time at Computer Rock, I was involved in building both small-scale and enterprise-level digital products. I focused on developing clean, responsive, and scalable frontend interfaces using HTML, SCSS (BEM methodology, Atomic Design), and JavaScript. My work included projects built with React, Next.js, jQuery, Drupal, Twig, Electron.js, Ruby (Haml), as well as CMS platforms like Sulu (Symfony-based) and Storyblok. I collaborated closely with design and backend teams using tools like Figma, Docker, and Git, and operated within Agile environments following both Scrum and Kanban workflows.",
@@ -10,7 +10,7 @@ export const data = [
       {
         id: 1,
         name: "Sunrise GmbH (eShop & My Sunrise)",
-        url: "https://www.sunrise.ch/en/home",
+        link: "https://www.sunrise.ch/en/home",
         description:
           "As part of Sunrise’s digital transformation, I worked on two major applications used by millions of customers: Sunrise eShop and My Sunrise. My responsibility was to build and maintain reusable components from a centralized library of over 400 elements, ensuring consistency across thousands of pages in four different languages. The eShop platform focused on digital sales for both new and existing customers, while the My Sunrise app allowed users to manage their subscriptions and services with ease. I collaborated daily with international teams across design, development, and QA, delivering pixel-perfect and performant solutions under Agile methodologies.",
         technologies:
@@ -27,8 +27,8 @@ export const data = [
     ],
   },
   {
-    company: "WebPortal, Kragujevac, Serbia",
-    url: "https://webportal.rs/",
+    company: "WebPortal",
+    link: "https://webportal.rs/",
     jobTitle: "Frontend Developer",
     tenure: "Nov 2016 – Oct 2020",
     description:

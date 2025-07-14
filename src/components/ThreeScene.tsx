@@ -51,12 +51,17 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
   const cssScene = useRef(new THREE.Scene());
   const cssGroup = useRef(new THREE.Group());
 
+  const clock = useRef(new THREE.Clock());
+  const animId = useRef<number>(0);
+
+  // Flag za kraj animacije
+  const animationDone = useRef(false);
+
   useEffect(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
 
-    // Kreiramo dva div kontejnera za WebGL i CSS3D renderere
     const webGLDiv = document.createElement("div");
     const css3DDiv = document.createElement("div");
 
@@ -83,7 +88,6 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
     webGLContainerRef.current = webGLDiv;
     css3DContainerRef.current = css3DDiv;
 
-    // WebGL Renderer
     webGLRenderer.current = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
@@ -93,14 +97,12 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
     webGLRenderer.current.setPixelRatio(window.devicePixelRatio);
     webGLContainerRef.current.appendChild(webGLRenderer.current.domElement);
 
-    // CSS3D Renderer
     cssRenderer.current = new CSS3DRenderer();
     cssRenderer.current.domElement.style.position = "absolute";
     cssRenderer.current.domElement.style.top = "0";
     cssRenderer.current.domElement.style.pointerEvents = "auto";
     css3DContainerRef.current.appendChild(cssRenderer.current.domElement);
 
-    // Kreiranje kamere i kontrola
     camera.current = new THREE.PerspectiveCamera(60, 1, 1, 2000);
     camera.current.position.set(0, 0, 600);
 
@@ -112,18 +114,17 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
     controls.current.dampingFactor = 0.05;
     controls.current.enableZoom = true;
 
-    glScene.current.add(new THREE.AmbientLight(0xffffff, 2));
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    glScene.current.add(new THREE.AmbientLight(0xffffff, 3.5));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2);
     dirLight.position.set(0, 1, 1);
     glScene.current.add(dirLight);
     cssScene.current.add(cssGroup.current);
 
-    // Funkcija za sinhronizaciju veličine renderera sa containerom
     const setRendererSize = () => {
       if (!container) return;
 
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
       webGLRenderer.current?.setSize(width, height);
       cssRenderer.current?.setSize(width, height);
@@ -136,21 +137,12 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
 
     setRendererSize();
 
-    let animId: number;
-    const animate = () => {
-      animId = requestAnimationFrame(animate);
-      controls.current?.update();
-
-      webGLRenderer.current?.render(glScene.current, camera.current!);
-      cssRenderer.current?.render(cssScene.current, camera.current!);
-    };
-    animate();
-
     window.addEventListener("resize", setRendererSize);
 
     return () => {
       window.removeEventListener("resize", setRendererSize);
-      cancelAnimationFrame(animId);
+
+      cancelAnimationFrame(animId.current);
 
       webGLRenderer.current?.dispose();
 
@@ -176,6 +168,80 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
     };
   }, []);
 
+  // Restartuj clock i flagu animacije na promenu url ili device
+  useEffect(() => {
+    clock.current.start();
+    animationDone.current = false;
+  }, [url, device]);
+
+  useEffect(() => {
+    const animate = () => {
+      animId.current = requestAnimationFrame(animate);
+
+      if (camera.current && controls.current && clock.current) {
+        const elapsed = clock.current.getElapsedTime();
+
+        const totalDuration = 4; // ukupno trajanje animacije
+        const phase1 = 2; // pomeraj levo
+        const phase2 = 1; // pomeraj desno
+        const phase3 = 1; // zumiranje
+
+        // ugao u radijanima za levo i desno pomeranje kamere oko modela
+        const leftAngle = THREE.MathUtils.degToRad(-10);
+        const rightAngle = THREE.MathUtils.degToRad(15);
+
+        // poluprečnik orbite (kako daleko je kamera od centra)
+        const radiusStart = 600; // početni zoom (distanca)
+        const radiusEnd = radiusStart * 0.85; // zumiranje na 85% distance
+
+        // visina kamere
+        const yStart = 0;
+        const yEnd = -60;
+
+        let angle = 0;
+        let radius = radiusStart;
+        let y = yStart;
+
+        if (!animationDone.current) {
+          if (elapsed <= phase1) {
+            const t = elapsed / phase1;
+            angle = THREE.MathUtils.lerp(0, leftAngle, t);
+          } else if (elapsed <= phase1 + phase2) {
+            const t = (elapsed - phase1) / phase2;
+            angle = THREE.MathUtils.lerp(leftAngle, rightAngle, t);
+          } else if (elapsed <= totalDuration) {
+            angle = rightAngle;
+            const t = (elapsed - phase1 - phase2) / phase3;
+            radius = THREE.MathUtils.lerp(radiusStart, radiusEnd, t);
+            y = THREE.MathUtils.lerp(yStart, yEnd, t); // spuštanje kamere
+          } else {
+            animationDone.current = true;
+            angle = rightAngle;
+            radius = radiusEnd;
+            y = yEnd;
+          }
+
+          const x = radius * Math.sin(angle);
+          const z = radius * Math.cos(angle);
+
+          camera.current.position.set(x, y, z);
+          camera.current.lookAt(0, 0, 0);
+          controls.current.update();
+        } else {
+          controls.current.update();
+        }
+      }
+
+      webGLRenderer.current?.render(glScene.current, camera.current!);
+      cssRenderer.current?.render(cssScene.current, camera.current!);
+    };
+
+    animate();
+
+    return () => cancelAnimationFrame(animId.current);
+  }, [url, device]);
+
+  // Load model i iframe
   useEffect(() => {
     if (!webGLRenderer.current || !camera.current || !cssGroup.current) return;
 
@@ -225,6 +291,8 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
 
         model.scale.setScalar(config.scale);
         model.position.copy(config.position);
+        model.position.y += 30;
+
         model.traverse((child) => {
           if ((child as THREE.Mesh).isMesh) {
             const mesh = child as THREE.Mesh;
@@ -262,7 +330,7 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
     cssObject.scale.setScalar(config.iframeScale);
     cssObject.position.copy(config.iframePosition);
     cssObject.rotation.copy(config.iframeRotation);
-
+    cssObject.position.y += 30;
     iframeObjRef.current = cssObject;
     cssGroup.current.add(cssObject);
 
@@ -273,17 +341,15 @@ const ThreeScene = ({ url, device }: ThreeSceneProps) => {
   }, [url, device]);
 
   return (
-    <>
-      <div
-        ref={containerRef}
-        style={{
-          width: "100%",
-          height: "100vh",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      />
-    </>
+    <div
+      ref={containerRef}
+      style={{
+        width: "100%",
+        height: "100vh",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    />
   );
 };
 
