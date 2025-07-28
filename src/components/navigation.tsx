@@ -8,16 +8,21 @@ const menuItems = [
   { label: "Contact", path: "#contact" },
 ];
 
-const Navigation = () => {
-  return (
-    <nav className={stiles.menu}>
-      {menuItems.map((item, index) => (
-        <Link key={index} href={item.path}>
-          {item.label}
-        </Link>
-      ))}
-    </nav>
-  );
-};
+const scrollTo = (id: string) =>
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+const Navigation = () => (
+  <nav className={stiles.menu}>
+    {menuItems.map(({ label, path }) => (
+      <button
+        key={path}
+        onClick={() => scrollTo(path.slice(1))}
+        className={stiles.link}
+      >
+        {label}
+      </button>
+    ))}
+  </nav>
+);
 
 export default Navigation;

@@ -48,6 +48,7 @@ export default function Project() {
                 <button
                   onClick={() => {
                     selectedEntryHandler(entry);
+                    window.history.replaceState(null, "");
                   }}
                   className={`${styles.projectsButton} ${
                     selectedEntry.company === entry.company && styles.isActive
@@ -70,6 +71,7 @@ export default function Project() {
                 );
                 setSelectedProject(project);
                 setActiveTab("phone");
+                window.history.replaceState(null, "");
               }}
               value={selectedProject?.name || ""}
             >
@@ -95,7 +97,10 @@ export default function Project() {
                   (device) => (
                     <button
                       key={device}
-                      onClick={() => setActiveTab(device)}
+                      onClick={() => {
+                        setActiveTab(device);
+                        window.history.replaceState(null, "");
+                      }}
                       className={`${styles.tabButton} ${
                         activeTab === device ? styles.tabButtonActive : ""
                       }`}

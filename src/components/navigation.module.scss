@@ -14,14 +14,18 @@
   }
 
   &:hover {
-    a {
+    .link {
       opacity: 0.6;
     }
   }
 
-  a {
+  .link {
     padding: 16px 32px;
     transition: all 0.3s ease-in-out;
+    background: transparent;
+    border: none;
+    font-family: var(--font-roboto-mono);
+    font-size: 16px;
 
     @include tablet {
       padding: 16px;
