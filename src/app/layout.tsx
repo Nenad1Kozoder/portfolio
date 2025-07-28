@@ -1,11 +1,8 @@
-"use client";
-
+import type { Metadata } from "next";
+import Script from "next/script";
 import { Poppins, Roboto_Mono } from "next/font/google";
-import { Provider } from "react-redux";
-import { store } from "../../store/store";
-import CustomCursor from "@/components/customCursor";
+import Providers from "./providers"; // new wrapper file (see below)
 import "./globals.scss";
-import SWProvider from "./providers";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -18,51 +15,86 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
+export const metadata: Metadata = {
+  title: "Nenad Kozoder – Senior Frontend Developer",
+  description:
+    "Nenad Kozoder – 9+ years turning designs into fast, accessible React & Next.js apps.",
+  openGraph: {
+    title: "Nenad Kozoder – Senior Frontend Developer",
+    description:
+      "Clean, scalable & accessible web solutions built with React, Next.js.",
+    url: "https://www.nenad-kozoder.rs/",
+    images: [
+      {
+        url: "https://www.nenad-kozoder.rs/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Nenad Kozoder portfolio preview",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://www.nenad-kozoder.rs/og-image.png"],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/favicon-96x96.png"
-          sizes="96x96"
-        />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-        <title>Nenad's portfolio</title>
-      </head>
       <body className={`${poppins.variable} ${robotoMono.variable}`}>
-        <SWProvider>
-          <Provider store={store}>
-            {/* <CustomCursor /> */}
-            {/* Google tag (gtag.js) */}
-            <script
-              async
-              src="https://www.googletagmanager.com/gtag/js?id=G-BRKPVVE2W5"
-            />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'G-BRKPVVE2W5');
-                `,
-              }}
-            />
+        {/* Hidden lead paragraph */}
+        <p style={{ display: "none" }}>
+          Nenad Kozoder – Senior Frontend Developer specializing in React,
+          Next.js, accessibility and performance.
+        </p>
 
-            {children}
-          </Provider>
-        </SWProvider>
+        <Providers>{children}</Providers>
+
+        {/* JSON-LD */}
+        <Script
+          id="schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Nenad Kozoder",
+              jobTitle: "Senior Frontend Developer",
+              url: "https://www.nenad-kozoder.rs/",
+              sameAs: [
+                "https://github.com/nenadkozoder",
+                "https://www.linkedin.com/in/nenadkozoder/",
+              ],
+              knowsAbout: [
+                "React",
+                "Next.js",
+                "Accessibility",
+                "Performance",
+                "SCSS",
+              ],
+            }),
+          }}
+        />
+
+        {/* gtag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BRKPVVE2W5"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BRKPVVE2W5');
+          `}
+        </Script>
       </body>
     </html>
   );
