@@ -1,0 +1,41 @@
+name: Build & Deploy to cPanel
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build & export
+        run: |
+          npm run build
+          npm run export
+
+      - name: Push out/ to main
+        run: |
+          git init --bare tmp
+          cd tmp
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git fetch origin main
+          git reset --hard origin/main
+          rm -rf *
+          cp -r ../out/* .
+          git add .
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "deploy $(date +%F-%T)"
+          git push origin main --force
