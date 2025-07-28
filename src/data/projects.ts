@@ -24,6 +24,23 @@ export const data = [
           "I developed a tailored promotional platform for Medinex, a Sunrise service providing exclusive deals to employees of corporate partners. The website was built using Next.js and Storyblok as a headless CMS, ensuring fast performance, flexible content structuring, and ease of maintenance. The project emphasized clean UI, responsive design, and simple content management for non-technical users—all while preserving brand consistency within the Sunrise ecosystem.",
         technologies: "Next.js, SCSS, JavaScript, Storyblok",
       },
+      {
+        id: 3,
+        name: "Schmidlin TM",
+        link: "https://www.schmidlin.ch/",
+        description:
+          "For a traditional Swiss family business (founded in 1947) specializing in high-quality, custom-made bathroom products, we created a corporate website that contains more than 50 pages, including sections on products, services, company history, and contacts. Project created in Simphony framework and for frontend we used twig, scss and JavaScript.",
+        technologies: "Symfony, Twig, SCSS, JavaScript",
+      },
+      {
+        id: 4,
+        name: "German Hockey Federation (DHB)",
+        url: "https://magazin.hockey.de/",
+        description:
+          "For the German Hockey Federation (DHB), I architected and delivered a unified platform that aggregates and distributes comprehensive data on associations, teams, players, and matches—including all domestic and international tournaments—across 20+ interconnected websites. All frontend code lives in a single repository, ensuring consistent UX, shared components, and streamlined CI/CD. The backend is powered by Sulu CMS (full-stack Symfony), while the frontend layer combines Twig, SCSS, vanilla JavaScript, and jQuery for public-facing pages, with React embedded for the custom admin interface that editors and club administrators use to update content in real time.",
+        technologies:
+          "Sulu CMS, Symfony, Twig, SCSS, JavaScript, jQuery, React",
+      },
     ],
   },
   {
