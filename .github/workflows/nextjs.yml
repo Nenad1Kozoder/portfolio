@@ -20,22 +20,21 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build & export
-        run: |
-          npm run build
-          npm run export
+      - name: Build static export
+        run: npm run build
 
-      - name: Push out/ to main
+      - name: Deploy to main branch
         run: |
-          git init --bare tmp
-          cd tmp
-          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git fetch origin main
-          git reset --hard origin/main
+          git config --global init.defaultBranch main
+          git clone --depth 1 \
+            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git \
+            deploy || true
+
+          cd deploy
           rm -rf *
           cp -r ../out/* .
           git add .
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "deploy $(date +%F-%T)"
+          git commit -m "deploy $(date +%F-%T)" || echo "nothing to commit"
           git push origin main --force
