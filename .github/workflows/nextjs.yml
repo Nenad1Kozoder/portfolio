@@ -20,22 +20,16 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Build & export
-        run: |
-          npm run build
-          npm run export
+      - name: Build static export
+        run: npm run build
 
-      - name: Push out/ to main
-        run: |
-          git init --bare tmp
-          cd tmp
-          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git fetch origin main
-          git reset --hard origin/main
-          rm -rf *
-          cp -r ../out/* .
-          git add .
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "deploy $(date +%F-%T)"
-          git push origin main --force
+      - name: Push to build repo
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.BUILD_REPO_TOKEN }}
+          repository-name: Nenad1Kozoder/portfolio-build
+          branch: main
+          folder: out
+          clean: true # obriše sve pre kopiranja
+      - name: Copy .cpanel.yml to out
+        run: cp .cpanel.yml out/
