@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 export const deviceConfigs = {
   phone: {
-    modelPath: "/phone.glb",
+    modelPath: "/phone-draco.glb",
     scale: 12,
     position: new THREE.Vector3(0, 0, 0),
     iframeSize: { width: 375, height: 812 },
@@ -11,7 +11,7 @@ export const deviceConfigs = {
     iframeRotation: new THREE.Euler(0, 0, 0),
   },
   tablet: {
-    modelPath: "/tablet.glb",
+    modelPath: "/tablet-draco.glb",
     scale: 75,
     position: new THREE.Vector3(0, 0, 0),
     iframeSize: { width: 767, height: 1080 },
@@ -20,7 +20,7 @@ export const deviceConfigs = {
     iframeRotation: new THREE.Euler(0, 0, 0),
   },
   desktop: {
-    modelPath: "/desktop.glb",
+    modelPath: "/desktop-draco.glb",
     scale: 10,
     position: new THREE.Vector3(0, 0, 0),
     iframeSize: { width: 1280, height: 800 },

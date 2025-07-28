@@ -10,6 +10,11 @@ import {
   CSS3DRenderer,
   CSS3DObject,
 } from "three/examples/jsm/renderers/CSS3DRenderer";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
+
 import styles from "./ThreeScene.module.scss";
 
 export type DeviceType = "phone" | "tablet" | "desktop";
@@ -20,6 +25,7 @@ interface ThreeSceneProps {
 }
 
 const loader = new GLTFLoader();
+loader.setDRACOLoader(dracoLoader);
 const modelCache: Record<string, THREE.Group> = {};
 
 async function loadModel(path: string): Promise<THREE.Group> {
