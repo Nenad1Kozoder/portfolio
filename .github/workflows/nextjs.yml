@@ -23,13 +23,14 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Push to build repo
+      - name: Copy .cpanel.yml to out
+        run: cp .cpanel.yml out/
+
+      - name: Deploy to build repo
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.BUILD_REPO_TOKEN }}
           repository-name: Nenad1Kozoder/portfolio-build
           branch: main
           folder: out
-          clean: true # obriše sve pre kopiranja
-      - name: Copy .cpanel.yml to out
-        run: cp .cpanel.yml out/
+          clean: true

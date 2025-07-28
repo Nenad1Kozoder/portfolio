@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nenadkog/portfolio/
+    - /bin/rm -rf $DEPLOYPATH/*
+    - git clone --depth 1 https://github.com/Nenad1Kozoder/portfolio-build.git /tmp/build
+    - /bin/cp -R /tmp/build/* $DEPLOYPATH/
+    - /bin/cp -R * $DEPLOYPATH/
