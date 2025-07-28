@@ -4,7 +4,7 @@ import stiles from "./navigation.module.scss";
 const menuItems = [
   { label: "Home", path: "#home" },
   { label: "Expertise", path: "#expertise" },
-  { label: "Work Experience", path: "#work" },
+  { label: "My Work", path: "#work" },
   { label: "Contact", path: "#contact" },
 ];
 

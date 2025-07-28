@@ -62,6 +62,20 @@ const SuluIcon = () => (
   </svg>
 );
 
+const ThreeJSIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 256 256"
+    fill="#e03a3e"
+    height="1em"
+    width="1em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M128 0L0 64v128l128 64 128-64V64L128 0zm0 32l96 48v96l-96 48-96-48V80l96-48z"></path>
+    <path d="M128 48L48 96v64l80 40 80-40V96l-80-48z"></path>
+    <path d="M128 72l-48 24v48l48 24 48-24v-48l-48-24z"></path>
+  </svg>
+);
+
 const HamlIcon = () => (
   <svg
     width="24px"
@@ -136,6 +150,7 @@ const categories = [
       { icon: <SiJquery />, name: "jQuery" },
       { icon: <RiReactjsFill />, name: "React" },
       { icon: <RiNextjsLine />, name: "Next.js" },
+      { icon: <ThreeJSIcon />, name: "Three.js" },
       { icon: <RiNodejsLine />, name: "Node.js" },
       { icon: <ElectronIcon />, name: "Electron.js" },
       { icon: <AiOutlineRuby />, name: "Ruby" },
