@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import Navigation from "@/components/navigation";
 import Home from "@/components/home";
 import Expertise from "@/components/expertise";
 import styles from "./page.module.scss";
@@ -10,6 +11,7 @@ const Page = () => {
   return (
     <div className={styles.page}>
       <Header />
+      <Navigation isMobile={true} />
       <main className={styles.main}>
         <Home name="Nenad" lastname="Kozoder" />
         <Expertise />
