@@ -1,6 +1,6 @@
 @use "./breakpoints.scss" as *;
 
-.page {
+.main {
   @include mobile {
     padding: 0 12px 40px;
   }

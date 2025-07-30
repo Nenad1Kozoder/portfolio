@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import Header from "@/components/header";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/FooterSection";
 import { Poppins, Roboto_Mono } from "next/font/google";
 import Providers from "./providers"; // new wrapper file (see below)
 import "./globals.scss";
@@ -53,9 +56,10 @@ export default function RootLayout({
           Nenad Kozoder – Senior Frontend Developer specializing in React,
           Next.js, accessibility and performance.
         </p>
-
+        <Header />
+        <Navigation isMobile={true} />
         <Providers>{children}</Providers>
-
+        <Footer />
         {/* JSON-LD */}
         <Script
           id="schema"

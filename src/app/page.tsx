@@ -1,26 +1,40 @@
-import Header from "@/components/header";
-import Navigation from "@/components/navigation";
+"use client";
+import { useEffect } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Home from "@/components/home";
 import Expertise from "@/components/expertise";
 import styles from "./page.module.scss";
 import Projects from "@/components/projects";
 import Contact from "@/components/contact";
-import Footer from "@/components/FooterSection";
 
-const Page = () => {
+function PageContent() {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return; // server-guard
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.slice(1);
+      const el = document.getElementById(id);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [searchParams]);
+
   return (
-    <div className={styles.page}>
-      <Header />
-      <Navigation isMobile={true} />
-      <main className={styles.main}>
-        <Home name="Nenad" lastname="Kozoder" />
-        <Expertise />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <main className={styles.main}>
+      <Home name="Nenad" lastname="Kozoder" />
+      <Expertise />
+      <Projects />
+      <Contact />
+    </main>
   );
-};
+}
 
-export default Page;
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading…</p>}>
+      <PageContent />
+    </Suspense>
+  );
+}
