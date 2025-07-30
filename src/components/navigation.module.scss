@@ -14,13 +14,17 @@
     flex-direction: column;
     gap: 16px;
     position: fixed;
-    width: 90%;
+    width: 70%;
     max-width: 400px;
     z-index: 350;
     left: 100%;
-    top: 80px;
+    top: 24px;
     transition: all 0.3s ease-in-out;
     transition-delay: 0.1s;
+
+    @include mobile-portrait {
+      width: 90%;
+    }
 
     &::before {
       content: "";
@@ -51,6 +55,8 @@
       }
 
       .link {
+        color: var(--white-color);
+
         &:first-of-type {
           transform: translateX(-45%);
         }
@@ -59,6 +65,12 @@
         }
         &:nth-of-type(3) {
           transform: translateX(-27%);
+        }
+        &:nth-of-type(4) {
+          transform: translateX(-8%);
+        }
+        &:nth-of-type(5) {
+          transform: translateX(16%);
         }
       }
     }
