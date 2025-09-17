@@ -119,6 +119,7 @@ export const data = [
         description:
           "Sonja Cerovac's website is a sleek, modern portfolio built using Next.js, seamlessly integrated with WordPress as a headless CMS via GraphQL. This setup enables fast, dynamic content fetching and easy content management through WordPress. The site effectively showcases creative work and personal branding with a clean and responsive design.",
         technologies: "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS",
+        lighthouse: "/lighthouse-sonjacerovac.webp",
       },
       {
         id: 2,
@@ -128,6 +129,7 @@ export const data = [
           "Studio Mušmula is a bilingual portfolio website built with Next.js and WordPress (headless CMS) using GraphQL for content delivery. The site presents the studio’s creative work across two languages with smooth transitions and optimal performance. Designed with scalability and editorial flexibility in mind, it supports dynamic content management and multilingual structure through WordPress.",
         technologies:
           "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS, i18n",
+        lighthouse: "/lighthouse-studiomusmula.webp",
       },
       {
         id: 3,

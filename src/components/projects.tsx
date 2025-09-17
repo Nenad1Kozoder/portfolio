@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { data } from "@/data/projects";
 import ThreeScene from "./ThreeScene";
+import Image from "next/image";
 import { DeviceType } from "./ThreeScene";
 import styles from "./projects.module.scss";
 
@@ -136,22 +137,42 @@ export default function Project() {
           )}
           {/* Info: projekat ili company */}
           {selectedProject ? (
-            <div className={styles.projectData}>
+            <div
+              className={`${styles.dataHolder} ${
+                selectedProject.lighthouse ? styles.projectDataGrid : ""
+              }`}
+            >
               <h2 className={styles.projectTitle}>{selectedProject.name}</h2>
-              {selectedProject?.url && (
-                <p className={styles.siteUrl}>
-                  <span>Url:</span>{" "}
-                  <a href={selectedProject.url} target="_blank">
-                    {selectedProject.url}
-                  </a>
+              <div className={styles.projectData}>
+                {selectedProject?.url && (
+                  <p className={styles.siteUrl}>
+                    <span>Url:</span>{" "}
+                    <a href={selectedProject.url} target="_blank">
+                      {selectedProject.url}
+                    </a>
+                  </p>
+                )}
+                <p className={styles.projectDescription}>
+                  {selectedProject.description}
                 </p>
+                <p className={styles.projectTechnologies}>
+                  <span>Technologies:</span> {selectedProject.technologies}
+                </p>
+              </div>
+              {selectedProject.lighthouse && (
+                <div className={styles.lighthouse}>
+                  <h4>Lighthouse report:</h4>
+                  <div className={styles.imageHolder}>
+                    <Image
+                      src={selectedProject.lighthouse}
+                      alt={selectedProject.name}
+                      fill={true}
+                      style={{ objectFit: "contain" }}
+                      priority={false} // sprečava Lighthouse “preload” warning
+                    />
+                  </div>
+                </div>
               )}
-              <p className={styles.projectDescription}>
-                {selectedProject.description}
-              </p>
-              <p className={styles.projectTechnologies}>
-                <span>Technologies:</span> {selectedProject.technologies}
-              </p>
             </div>
           ) : hasCompanyInfo(selectedEntry) ? (
             <div className={styles.projectData}>

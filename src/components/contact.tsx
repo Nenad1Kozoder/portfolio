@@ -1,4 +1,5 @@
 "use client";
+import CalendlyInline from "./CalendlyInline";
 import classes from "./contact.module.scss";
 
 import {
@@ -38,6 +39,8 @@ const Contact = () => {
     <section className={classes.contact} id="contact">
       <h2 className={classes.title}>My Contacts</h2>
       <div className={classes.container}>
+        <CalendlyInline url="https://calendly.com/kozodern/15-minute-discovery-call" />
+
         <ul className={classes.list}>
           {contacts.map(({ icon, label, href }) => (
             <li key={label} className={classes.item}>

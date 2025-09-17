@@ -9,7 +9,6 @@ const menuItems = [
   { label: "Expertise", path: "#expertise" },
   { label: "My Work", path: "#work" },
   { label: "Contact", path: "#contact" },
-  { label: "Services", path: "/services" },
 ];
 
 interface NavigationProps {

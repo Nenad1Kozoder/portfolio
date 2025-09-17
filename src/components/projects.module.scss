@@ -174,12 +174,40 @@ $transition: all 0.2s ease-in-out;
       }
     }
   }
-  .projectData {
+  .dataHolder {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    &.projectDataGrid {
+      display: grid;
+      grid-template-columns: 50% 50%;
+
+      @include mobile-portrait {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .lighthouse {
+      h4 {
+        margin-bottom: 16px;
+      }
+
+      .imageHolder {
+        position: relative;
+        aspect-ratio: 600/225;
+      }
+    }
   }
 }
 
 .projectTitle {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  grid-column: span 2;
+
+  @include mobile-portrait {
+    grid-column: 1;
+  }
 
   a {
     transition: $transition;
@@ -192,7 +220,7 @@ $transition: all 0.2s ease-in-out;
 
 .tenure,
 .siteUrl {
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   font-family: var(--font-roboto-mono);
 
   span {
