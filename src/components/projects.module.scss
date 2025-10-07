@@ -51,6 +51,7 @@ $transition: all 0.2s ease-in-out;
     align-items: center;
     justify-content: center;
     height: 40px;
+    border-radius: 8px;
   }
   span {
     font-size: 12px;
@@ -85,6 +86,7 @@ $transition: all 0.2s ease-in-out;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   border: 1px solid var(--white-color);
+  border-radius: 8px;
   color: var(--white-color);
   font-size: 16px;
   font-weight: 700;
@@ -105,7 +107,8 @@ $transition: all 0.2s ease-in-out;
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  border-radius: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   border: 1px solid var(--white-color);
   color: var(--white-color);
   font-size: 16px;
@@ -113,15 +116,16 @@ $transition: all 0.2s ease-in-out;
   padding: 0 8px;
   margin-top: 16px;
   font-family: var(--font-roboto-mono);
+  cursor: pointer;
 
   &::picker(select) {
     appearance: base-select;
     border: none;
-    background: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
     background: var(--red-color);
-    padding: 4px 8px;
     margin-top: 4px;
     color: var(--white-color);
+    padding: 16px 8px;
   }
 
   &::picker-icon {
@@ -135,6 +139,8 @@ $transition: all 0.2s ease-in-out;
 
   option {
     min-height: 32px;
+    padding-right: 16px;
+    margin-bottom: 4px;
   }
 }
 
@@ -167,6 +173,7 @@ $transition: all 0.2s ease-in-out;
       font-weight: 700;
       transition: $transition;
       font-family: var(--font-roboto-mono);
+      border-radius: 8px;
 
       &.tabButtonActive,
       &:hover {
