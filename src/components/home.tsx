@@ -9,7 +9,7 @@ const Home = ({ name, lastname }) => {
         <span className={styles.nameOne}>{`${name} `}</span>
         <span className={styles.nameTwo}>{lastname}</span>
       </h1>
-      <TypeText text="Frontend Web Developer || JavaScript Developer" />
+      <TypeText text="Senior Web Developer - Frontend Specialist" />
 
       <div className={styles.description}>
         <p>

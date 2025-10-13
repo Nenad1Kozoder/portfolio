@@ -111,6 +111,11 @@ export const data = [
   },
   {
     company: "Freelance",
+    url: "https://nenad-kozoder.rs/",
+    jobTitle: "Web Developer",
+    tenure: "Mar 2016 – Present",
+    description:
+      "As a freelance developer, I collaborated with design studios, agencies, and individual clients to deliver custom-built web solutions. My focus was on creating fast, modern, and visually appealing websites using Next.js, React, and WordPress as a headless CMS. I handled every aspect of development—from translating design concepts into functional UIs to setting up content workflows and optimizing performance for SEO and Lighthouse metrics. Projects ranged from creative portfolios and corporate websites to marketing pages, each tailored for scalability, accessibility, and long-term maintainability.",
     projects: [
       {
         id: 1,

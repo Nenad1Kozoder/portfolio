@@ -1,20 +1,20 @@
 @use "../app/breakpoints.scss" as *;
 
 :root {
-  --background: #285082;
+  //--background: #285082;
   --red-color: #e03a3e;
   --white-color: #fff;
+  //--background: linear-gradient(
+  //                135deg,
+  //                rgb(40, 80, 130) 0%,
+  //                rgb(25, 60, 110) 33%,
+  //                rgb(15, 45, 90) 100%
+  //);
   --background: linear-gradient(
-    135deg,
-    rgb(40, 80, 130) 0%,
-    rgb(25, 60, 110) 33%,
-    rgb(15, 45, 90) 100%
-  );
-  --background: linear-gradient(
-    135deg,
-    hsl(210 50% 35%) 0%,
-    /* #285082 → 50% saturacija */ hsl(210 60% 28%) 33%,
-    /* #193c6e */ hsl(210 70% 20%) 100% /* #0f2d5a */
+                  135deg,
+                  hsl(210 50% 35%) 0%,
+                  hsl(210 60% 28%) 33%,
+                  hsl(210 70% 20%) 100%
   );
 
   --foreground: #ededed;
@@ -51,6 +51,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  background-repeat: no-repeat;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,15 +65,15 @@ body {
     position: absolute;
     inset: 0;
     background: radial-gradient(
-        circle at 30% 20%,
-        hsla(210, 100%, 70%, 0.5) 0%,
-        transparent 30%
-      ),
-      radial-gradient(
-        circle at 70% 80%,
-        hsla(200, 100%, 60%, 0.4) 0%,
-        transparent 40%
-      );
+                    circle at 30% 20%,
+                    hsla(210, 100%, 70%, 0.5) 0%,
+                    transparent 30%
+    ),
+    radial-gradient(
+                    circle at 70% 80%,
+                    hsla(200, 100%, 60%, 0.4) 0%,
+                    transparent 40%
+    );
     mix-blend-mode: screen; /* osvetljava pozadinu */
     pointer-events: none;
     animation: breathe 6s ease-in-out infinite;
