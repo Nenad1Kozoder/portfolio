@@ -1,5 +1,54 @@
 export const data = [
   {
+    company: "Freelance",
+    url: "https://nenad-kozoder.rs/",
+    jobTitle: "Web Developer",
+    tenure: "Mar 2016 – Present",
+    description:
+      "As a freelance developer, I collaborated with design studios, agencies, and individual clients to deliver custom-built web solutions. My focus was on creating fast, modern, and visually appealing websites using Next.js, React, and WordPress as a headless CMS. I handled every aspect of development—from translating design concepts into functional UIs to setting up content workflows and optimizing performance for SEO and Lighthouse metrics. Projects ranged from creative portfolios and corporate websites to marketing pages, each tailored for scalability, accessibility, and long-term maintainability.",
+    projects: [
+      {
+        id: 1,
+        name: "Ottometric Inc",
+        url: "https://ottometric.com/",
+        description:
+          "Ottometric is a performance-oriented marketing website built with Next.js and React, designed with a strong focus on scalability, SEO, and clean, maintainable architecture. The site integrates Sanity as a headless CMS, using structured content models and Portable Text for flexible, schema-driven content delivery, while modular SCSS (Sass) ensures reusable and predictable styling. Efficient data fetching, selective dynamic rendering, optimized asset handling, and lightweight interactive components powered by Swiper provide a smooth user experience without unnecessary JavaScript overhead.",
+        technologies: "Next.js, React, Sanity (Headless CMS), Portable Text, SCSS (Sass), Swiper, JavaScript",
+        lighthouse: "/lighthouse-ottometric.webp",
+      },
+      {
+        id: 2,
+        name: "Sonja Cerovac",
+        url: "https://sonjacerovac.com/",
+        description:
+          "Sonja Cerovac's website is a sleek, modern portfolio built using Next.js, seamlessly integrated with WordPress as a headless CMS via GraphQL. This setup enables fast, dynamic content fetching and easy content management through WordPress. The site effectively showcases creative work and personal branding with a clean and responsive design.",
+        technologies: "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS",
+        lighthouse: "/lighthouse-sonjacerovac.webp",
+      },
+      {
+        id: 3,
+        name: "Studio Mušmula",
+        url: "https://studiomusmula.rs/",
+        description:
+          "Studio Mušmula is a bilingual portfolio website built with Next.js and WordPress (headless CMS) using GraphQL for content delivery. The site presents the studio’s creative work across two languages with smooth transitions and optimal performance. Designed with scalability and editorial flexibility in mind, it supports dynamic content management and multilingual structure through WordPress.",
+        technologies:
+          "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS, i18n",
+        lighthouse: "/lighthouse-studiomusmula.webp",
+      },
+      {
+        id: 4,
+        name: "PrairieDogVP",
+        url: "https://prairiedogvp.com/",
+        associate: "TheMavrock",
+        associateUrl: "https://themavrock.com/",
+        description:
+          "prairiedogvp.com is a corporate website for PrairieDog Venture Partners, focusing on blockchain-powered Smart Contracts for the construction industry. Built on WordPress, it explains complex tech solutions like digital contracts and capital project optimization. The site features a clear informational structure—Smart Contracts overview, How It Works, Resources, Blog, Team, and Contact—designed for enterprise-level clientele.",
+        technologies:
+          "WordPress, SiteOrigin Page Builder (or similar), Contact Form 7, Custom CSS, Responsive Design",
+      },
+    ],
+  },
+  {
     company: "Computer Rock doo",
     url: "https://computerrock.com/",
     jobTitle: "Frontend / JavaScript Developer",
@@ -106,46 +155,6 @@ export const data = [
           "PortoTravel.rs is a tourism and travel agency website built on WordPress, showcasing curated tours and trips. The site is developed using SiteOrigin Page Builder for flexible page layouts, Toolset for managing tour custom post types and relationships, and features dynamic image sliders powered by Slider Revolution to highlight destinations and offers.",
         technologies:
           "WordPress, SiteOrigin Page Builder, Toolset, Slider Revolution, Custom CSS, Responsive Design",
-      },
-    ],
-  },
-  {
-    company: "Freelance",
-    url: "https://nenad-kozoder.rs/",
-    jobTitle: "Web Developer",
-    tenure: "Mar 2016 – Present",
-    description:
-      "As a freelance developer, I collaborated with design studios, agencies, and individual clients to deliver custom-built web solutions. My focus was on creating fast, modern, and visually appealing websites using Next.js, React, and WordPress as a headless CMS. I handled every aspect of development—from translating design concepts into functional UIs to setting up content workflows and optimizing performance for SEO and Lighthouse metrics. Projects ranged from creative portfolios and corporate websites to marketing pages, each tailored for scalability, accessibility, and long-term maintainability.",
-    projects: [
-      {
-        id: 1,
-        name: "Sonja Cerovac",
-        url: "https://sonjacerovac.com/",
-        description:
-          "Sonja Cerovac's website is a sleek, modern portfolio built using Next.js, seamlessly integrated with WordPress as a headless CMS via GraphQL. This setup enables fast, dynamic content fetching and easy content management through WordPress. The site effectively showcases creative work and personal branding with a clean and responsive design.",
-        technologies: "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS",
-        lighthouse: "/lighthouse-sonjacerovac.webp",
-      },
-      {
-        id: 2,
-        name: "Studio Mušmula",
-        url: "https://studiomusmula.rs/",
-        description:
-          "Studio Mušmula is a bilingual portfolio website built with Next.js and WordPress (headless CMS) using GraphQL for content delivery. The site presents the studio’s creative work across two languages with smooth transitions and optimal performance. Designed with scalability and editorial flexibility in mind, it supports dynamic content management and multilingual structure through WordPress.",
-        technologies:
-          "Next.js, WordPress (Headless CMS), GraphQL, React, SCSS, i18n",
-        lighthouse: "/lighthouse-studiomusmula.webp",
-      },
-      {
-        id: 3,
-        name: "PrairieDogVP",
-        url: "https://prairiedogvp.com/",
-        associate: "TheMavrock",
-        associateUrl: "https://themavrock.com/",
-        description:
-          "prairiedogvp.com is a corporate website for PrairieDog Venture Partners, focusing on blockchain-powered Smart Contracts for the construction industry. Built on WordPress, it explains complex tech solutions like digital contracts and capital project optimization. The site features a clear informational structure—Smart Contracts overview, How It Works, Resources, Blog, Team, and Contact—designed for enterprise-level clientele.",
-        technologies:
-          "WordPress, SiteOrigin Page Builder (or similar), Contact Form 7, Custom CSS, Responsive Design",
       },
     ],
   },
